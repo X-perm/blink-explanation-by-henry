@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blink Explanation and Information</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 40px;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    h1, h2 {
+      color: #222;
+    }
+    p {
+      margin-bottom: 1em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Blink Explanation And Information</h1>
+  <p>As everyone knows, the longest M7 world record held by one player recently has been beaten with the use of an exploit/cheat whatever you want to name it. This writeup was followed by a chain of events happened till now.</p>
+
+  <h2>The entire blink summed up</h2>
+  <p>It allows you to traverse instantly (teleportation), through the use of a special spoofer and some mathematics algorithms that determine the shortest path.</p>
+  <p>It uses packet (funnily enough).</p>
+  <p>It can crash a server without packet spoofer/handler.</p>
+
+  <h2>Who? How?</h2>
+  <p>As ridiculous as it might sound, a teleportation exploit has been a thing since 1.7.2. The initial founder of this exploit (without diving into too much details) was Leijurv. As much as the name might've been repeated in the exploiting community, Leijurv discovered a vulnerable in how MC handles chunks loading and thredding. The main focus of the vulnerability originally was disclosed until 2018 when a group by the name of Nerds Inc, came up with the idea of sending packets to chunks that haven't been loaded. This practice allows the player to gain useful information like the coordinates of the block player is breaking, many more... So what does this mean? Initially, it was deemed that the coordinates would be out of boundary as the chunks contained blocks they were breaking hadn't been generated yet. But after tinkering around a bit with the calculation, Leijurv and Nerds Inc found out they could triangulate the distance between the broken block and the unloaded chunk (this allows the player to gather the information about the distance between the player in the loaded chunk to the center of the unloaded chunk).</p>
+  <p>Fair is fair, the exploit was entirely based off a fix in PaperMC. The server doesn't "misbehave" or do anything suspicious. The exploit was pretty surreptitious and straightforward. By breaking ghost block in the unloaded render chunk, the server will dutifully tell you (send to the console) the coordinates and such information. However, after PaperMC patched the initial method to reverse-engineer the coordinate of ghost block, Leijurv discovered an unambiguous way to reach the block from too far away. When the player breaks a ghost block, it creates a desync between the client when sending the packet, by using a cheat that spoofs the packet to the server with ALTS, this would then send back the coordinate (previously thought to have been patched by Paper). As such, the exploit was still active.</p>
+  <p>Eventually, this exploit would be named as <strong>No Com</strong> (No Comment) and used across 2b2t to find OW bases. Leijurv and Nerds Inc would continue piling up coordinates of bases in a DB with it growing up to 3.3GB! The exploit was an undesired behaviour from the server and swept under the rug for many years. Developmentally, such used cases were found in many programs like Orbfusecator which constantly pushes you to fix the ghost blocks, creating a desync in response between client and server. In 2021, 2b2t's owner - Hausemaster, finally patched the exploit by only allowing each alt to load a limited instance of chunks. But would this mean the end to such obscure deteriorative exploit?</p>
+</body>
+</html>
